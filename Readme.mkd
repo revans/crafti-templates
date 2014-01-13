@@ -1,0 +1,9 @@
+# Crafti Templates - Sample Templates
+
+Right now, this has a sample sinatra template for generating a new sinatra application, the
+way I might set one up. If you don't like it, feel free to fork it, change it, and keep it
+to yourself to use however you want. I won't accept incoming pull requests, unless you spot
+an error or typo. Any preferences should remain as your own, to share how you want to share,
+if at all.
+
+Feel free to use, take, steal, rip-off. I don't care.
