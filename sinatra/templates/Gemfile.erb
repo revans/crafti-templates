@@ -1,0 +1,35 @@
+source "https://rubygems.org"
+ruby "<%= ruby_version %>"
+
+gem 'rack'
+gem 'sinatra'
+gem 'foreman'
+gem 'thin'
+gem 'env_manager'
+
+# gem "rack-contrib"
+# gem "sinatra-contrib"
+
+group :development do
+  gem 'uglifier'
+  gem 'sass'
+  gem 'coffee-script'
+  gem 'sprockets'
+
+  # autocompile assets
+  gem 'guard-sass'
+  gem 'guard-coffeescript'
+
+  # live reloading of assests
+  gem 'guard-livereload'
+  gem 'rack-livereload'
+end
+
+group :test do
+  gem 'minitest',   require: false
+  gem 'rack-test',  require: false
+end
+
+group :development, :test do
+  gem 'pry'
+end
