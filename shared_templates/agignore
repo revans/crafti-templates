@@ -1,0 +1,17 @@
+Rakefile
+Gemfile
+config.ru
+.git
+.gitignore
+.foreman
+.env.dev
+.env
+vendor
+tmp
+test
+public
+log
+db
+config
+bin
+script

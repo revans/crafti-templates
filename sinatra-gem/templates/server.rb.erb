@@ -1,0 +1,22 @@
+require 'sinatra/base'
+
+if defined? Encoding
+  Encoding.default_external = Encoding::UTF_8
+end
+
+module <%= appname %>
+  module_function
+  def connection
+    Application.config.database_url
+  end
+end
+
+module <%= appname %>
+  class Server < ::Sinatra::Base
+    include <%= appname %>::Configuration
+
+    get "/?" do
+      redirect url_path('/')
+    end
+  end
+end

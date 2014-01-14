@@ -1,0 +1,14 @@
+source "https://rubygems.org"
+ruby "<%= ruby_version %>"
+
+gem 'sinatra'
+gem 'env_manager'
+
+group :test do
+  gem 'minitest',   require: false
+  gem 'rack-test',  require: false
+end
+
+group :development, :test do
+  gem 'pry'
+end
