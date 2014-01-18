@@ -4,28 +4,30 @@ require 'pathname'
 require 'logger'
 require 'time'
 
-module Application
-  extend self
+module <%= appname %>
+  module Application
+    extend self
 
-  def root
-    @root ||= ::Pathname.new(__dir__).join('..')
-  end
+    def root
+      @root ||= ::Pathname.new(__dir__).join('../').expand_path
+    end
 
-  def public_dir
-    root.join('public')
-  end
+    def public_dir
+      root.join('public')
+    end
 
-  def views_dir
-    root.join('views')
-  end
+    def views_dir
+      root.join('views')
+    end
 
-  def config
-    @config ||= ::Env.load(root)
+    def config
+      @config ||= ::Env.load(root)
+    end
   end
 end
 
 require 'bundler'
-Bundler.require(:default, Application.config.env)
+Bundler.require(:default, <%= appname %>::Application.config.env)
 
 module <%= appname %>
   module Configuration

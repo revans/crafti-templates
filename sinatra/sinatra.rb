@@ -1,7 +1,7 @@
 
 require 'pathname'
 path              = ::Pathname.new("/Users/robert/dotfiles/crafti-templates").expand_path
-template_path     = path.join("/sinatra/templates")
+template_path     = path.join("sinatra/templates")
 shared_templates  = path.join("shared_templates")
 
 root "sinatra" do
@@ -46,4 +46,9 @@ root "sinatra" do
   cp "test/test_helper.rb",   template_path.join("test_helper.rb")
 
   run "bundle install --binstubs"
+  bower "angular", "bootstrap", "sugar"
+
+  git "init ."
+  git "aa"
+  git "commit -am 'Created the new Project'"
 end
