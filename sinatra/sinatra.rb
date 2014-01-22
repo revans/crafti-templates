@@ -45,10 +45,12 @@ root "sinatra" do
   cp ".gitignore",            template_path.join("gitignore")
   cp "test/test_helper.rb",   template_path.join("test_helper.rb")
 
-  run "bundle install --binstubs"
-  bower "angular", "bootstrap", "sugar"
+  bower "angular", "bootstrap", "sugar", "modernizr"
+  bundle :install, with: 'binstubs'
 
-  git "init ."
-  git "aa"
-  git "commit -am 'Created the new Project'"
+  git do
+    init
+    add '.'
+    commit 'Create the new project'
+  end
 end
