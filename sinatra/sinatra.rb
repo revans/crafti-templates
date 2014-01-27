@@ -5,7 +5,7 @@ template_path     = path.join("sinatra/templates")
 shared_templates  = path.join("shared_templates")
 
 root "sinatra" do
-  mkdir "app"
+  mkdir "app/views"
   mkdir "test"
   mkdir "public"
   mkdir "config"
@@ -37,7 +37,6 @@ root "sinatra" do
     { database_name:      "get_the_rundown",
       database_username:  "robert" }
 
-  cp "index.html.erb",        shared_templates.join("index.html")
   cp "Rakefile",              template_path.join("Rakefile")
   cp "Guardfile",             template_path.join("Guardfile")
   cp "Procfile",              template_path.join("Procfile")
@@ -45,6 +44,10 @@ root "sinatra" do
   cp ".foreman",              template_path.join("foreman")
   cp ".gitignore",            template_path.join("gitignore")
   cp "test/test_helper.rb",   template_path.join("test_helper.rb")
+
+  cp "app/views/layout.html.erb",                     shared_templates.join("index.html")
+  cp "assets/app/stylesheets/application.css.scss",   shared_templates.join("stylesheets/application.css.scss")
+  cp "assets/app/javascripts/application.js.coffee",  shared_templates.join("stylesheets/application.js.coffee")
 
   bower "angular", "bootstrap", "sugar", "modernizr"
   bundle :install, with: 'binstubs'
