@@ -37,7 +37,7 @@ root "sinatra" do
     { database_name:      "get_the_rundown",
       database_username:  "robert" }
 
-  cp "index.html.erb",        template_path.join("index.html")
+  cp "index.html.erb",        shared_templates.join("index.html")
   cp "Rakefile",              template_path.join("Rakefile")
   cp "Guardfile",             template_path.join("Guardfile")
   cp "Procfile",              template_path.join("Procfile")
