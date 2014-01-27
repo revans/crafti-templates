@@ -47,7 +47,7 @@ root "sinatra" do
 
   cp "app/views/layout.html.erb",                     shared_templates.join("index.html")
   cp "assets/app/stylesheets/application.css.scss",   shared_templates.join("stylesheets/application.css.scss")
-  cp "assets/app/javascripts/application.js.coffee",  shared_templates.join("stylesheets/application.js.coffee")
+  cp "assets/app/javascripts/application.js.coffee",  shared_templates.join("javascripts/application.js.coffee")
 
   bower "angular", "bootstrap", "sugar", "modernizr"
   bundle :install, with: 'binstubs'
