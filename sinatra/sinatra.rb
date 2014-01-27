@@ -37,6 +37,11 @@ root "sinatra" do
     { database_name:      "get_the_rundown",
       database_username:  "robert" }
 
+  template ".env",
+    template_path.join('env.sample.erb'),
+    { database_name:      "get_the_rundown",
+      database_username:  "robert" }
+
   cp "Rakefile",              template_path.join("Rakefile")
   cp "Guardfile",             template_path.join("Guardfile")
   cp "Procfile",              template_path.join("Procfile")
