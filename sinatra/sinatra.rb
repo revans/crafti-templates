@@ -20,7 +20,7 @@ root "sinatra" do
   touch "assets/app/javascripts/application.js.coffee"
   touch "assets/app/stylesheets/application.css.scss"
 
-  template "config/applicationb.rb",
+  template "config/application.rb",
     template_path.join('config/application.rb.erb'),
     { app_classname: 'GetTheRundown' }
 
