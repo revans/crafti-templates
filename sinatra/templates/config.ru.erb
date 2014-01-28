@@ -1,7 +1,15 @@
+$stdout.sync = true
+
+require 'pathname'
+require 'logger'
 require 'rubygems'
 require 'bundler/setup'
-
+require 'env_manager'
 require './config/application'
+
+Bundler.require(:default, <%= app_classname %>::Application.config.env)
+
+require './config/configuration'
 require './app/api'
 
 app = Rack::Builder.new do
@@ -11,9 +19,11 @@ app = Rack::Builder.new do
     # Let Sprockets know about the ./assets directory and the ./vendor/assets
     # directory so it can load javascript/stylesheet/template files from there.
     #
-    %w{javascripts stylesheets images templates fonts vendor}.each do |path|
+    %w{javascripts stylesheets images templates fonts}.each do |path|
       environment.append_path "./assets/app/#{path}"
     end
+
+    environment.append_path "./assets/vendor"
 
     run environment
   end

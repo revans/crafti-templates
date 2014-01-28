@@ -24,6 +24,10 @@ root "sinatra" do
     template_path.join('config/application.rb.erb'),
     { app_classname: 'GetTheRundown' }
 
+  template "config/configuration.rb",
+    template_path.join('config/configuration.rb.erb'),
+    { app_classname: 'GetTheRundown' }
+
   template "app/api.rb",
     template_path.join('app/api.rb.erb'),
     { app_classname: 'GetTheRundown' }
