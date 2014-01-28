@@ -1,0 +1,11 @@
+
+module <%= app_classname %>
+  class Api < ::Sinatra::Base
+    include <%= app_classname %>::Configuration
+
+    get "/" do
+      "Hello World"
+    end
+
+  end
+end

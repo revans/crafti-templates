@@ -1,4 +1,8 @@
+require 'rubygems'
+require 'bundler/setup'
+
 require './config/application'
+require './app/api'
 
 app = Rack::Builder.new do
   map "/assets" do
@@ -7,29 +11,9 @@ app = Rack::Builder.new do
     # Let Sprockets know about the ./assets directory and the ./vendor/assets
     # directory so it can load javascript/stylesheet/template files from there.
     #
-    %w{javascripts stylesheets images templates fonts}.each do |path|
+    %w{javascripts stylesheets images templates fonts vendor}.each do |path|
       environment.append_path "./assets/app/#{path}"
     end
-
-    # When using Bower and Bower's RC file, make sure you set 'directory'
-    # to: { "directory": "assets/vendor" }
-    #
-    # Then, to use it in the app:
-    #
-    # ==== Example
-    #
-    # If you installed jquery it'll be installed in the
-    # +assets/vendor+ directory under: jquery/jquery.min.js
-    #
-    # In your assets/stylesheets/application.css.scss file you'd:
-    #
-    #   #= require jquery/jquery.min
-    #
-    # In your stylesheets, using normalize-css as an example:
-    #
-    #   *= normalize-css/normalize
-    #
-    environment.append_path "./assets/vendor"
 
     run environment
   end
@@ -38,9 +22,9 @@ app = Rack::Builder.new do
   use Rack::LiveReload
   use Rack::MethodOverride
 
-  # map "/" do
-  #   run <%= app_classname %>::Api.new
-  # end
+  map "/" do
+    run <%= app_classname %>::Api.new
+  end
 end
 
 run app
