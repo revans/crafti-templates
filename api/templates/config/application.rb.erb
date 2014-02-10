@@ -1,0 +1,21 @@
+module <%= app_classname %>
+  module Application
+    extend self
+
+    def root
+      @root ||= ::Pathname.new(__dir__).join('..')
+    end
+
+    def public_dir
+      root.join('public')
+    end
+
+    def views
+      root.join('app/views')
+    end
+
+    def config
+      @config ||= ::EnvManager.load(root)
+    end
+  end
+end

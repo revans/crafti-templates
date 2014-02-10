@@ -8,26 +8,10 @@ gem 'thin'
 gem 'env_manager'
 
 # gem "rack-contrib",   require: 'rack/contrib'
-# gem "sinatra-contrib"
 
 gem 'oj'
 gem 'msgpack'
 gem 'rabl'
-
-group :development do
-  gem 'uglifier'
-  gem 'sass'
-  gem 'coffee-script'
-  gem 'sprockets'
-
-  # autocompile assets
-  gem 'guard-sass'
-  gem 'guard-coffeescript'
-
-  # live reloading of assests
-  gem 'guard-livereload'
-  gem 'rack-livereload'
-end
 
 group :test do
   gem 'minitest',   require: false

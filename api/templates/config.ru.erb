@@ -1,0 +1,13 @@
+require './config/boot'
+
+Bundler.require(:default, <%= app_classname %>::Application.config.env)
+
+require './app/api'
+
+app = Rack::Builder.new do
+  map "/api" do
+    run <%= app_classname %>::Api.new
+  end
+end
+
+run app

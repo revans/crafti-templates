@@ -1,0 +1,72 @@
+module <%= app_classname %>
+  module Configuration
+    def self.included(app)
+
+      # Register Rabl
+      Rabl.register!
+
+      # Before Filter for handling HTTP Cache-Control
+      # app.before do
+      #   app.cache_control :public, :must_revalidate, max_age: 60
+      #   app.expires 500,  :public, :must_revalidate
+      # end
+
+      # general default configuration
+      app.configure do
+        app.set :root,              <%= app_classname %>::Application.root
+        app.set :public_folder,     <%= app_classname %>::Application.public_dir
+        app.set :views,             <%= app_classname %>::Application.views
+        # app.set :show_exceptions,   false
+        # app.set :server,            'thin'
+
+        # app.mime_type :plain, 'text/plain'
+        # app.set :environment, ENV["RACK_ENV"]
+      end
+
+      ## Environment Specific Configuration
+      #
+      app.configure :development do
+        app.enable :sessions, :logging, :dump_errors, :raise_errors, :show_exceptions
+      end
+
+      # app.configure :test         do; end
+      # app.configure :staging      do; end
+
+      # app.configure :production do
+      #   require 'rack/cache'
+      #   use Rack::Cache
+      # end
+
+      # 404 Error Handling
+      app.not_found do
+        # do something, return a 404 page
+      end
+
+      # Application Error Handling
+      #
+      # Can also do:
+      #
+      #   * app.error 405...510 do;end
+      #
+      app.error do
+        # Log an Error to a File or STDOUT/STDERR
+        # "Sorry there was a nasty error - #{env['sinatra.error'].name}"
+      end
+
+      # Reload App...
+
+      # connection to sql
+      # DB, Sequel::Model.db = ""
+
+      # Load Sequel plugins
+      # Sequel::Model.plugin :touch # defaults to updated_at
+
+      # Sequel Extensions
+      # Sequel.extension :migration, :core_extensions, :inflector
+
+      # Sequel Settings
+      # Sequel.application_timezone = :utc
+      # Sequel.database_timezone    = :utc
+    end
+  end
+end

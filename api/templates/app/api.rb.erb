@@ -1,0 +1,12 @@
+
+module <%= app_classname %>
+  class Api < ::Sinatra::Base
+    include <%= app_classname %>::Configuration
+    use Rack::ETag
+
+    get "/" do
+      "Hello World"
+    end
+
+  end
+end

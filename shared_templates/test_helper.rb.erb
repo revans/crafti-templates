@@ -1,0 +1,57 @@
+ENV['RACK_ENV'] = 'test'
+require './config/boot'
+
+# Load Bundler and Gemfile with the "test" env
+Bundler.require(:default, ENV["RACK_ENV"])
+
+# Api
+require './app/api'
+
+# explicitly require testing frameworks
+require 'minitest/autorun'
+require 'minitest/pride'
+require 'rack/test'
+
+
+module BuilderRoute
+  def route(url, app)
+    map(url) { run app.new }
+  end
+end
+
+class Rack::Builder
+  include BuilderRoute
+end
+
+
+module BuilderDsl
+  include BuilderRoute
+
+  def route_to(url, app)
+    builder do
+      route url, app
+    end
+  end
+
+  def builder(&block)
+    build = ::Rack::Builder.new
+    build.instance_eval(&block)
+    build.to_app
+  end
+end
+
+
+module <%= app_classname %>
+  class ApiTest < Minitest::Test
+    include Rack::Test::Methods
+    include BuilderDsl
+
+    def app
+      route_to "/api", ::<%= app_classname %>::Api
+    end
+
+    def parse(body)
+      ::Oj.load(body)
+    end
+  end
+end
